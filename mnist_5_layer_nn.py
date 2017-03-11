@@ -99,12 +99,12 @@ Y = tf.nn.softmax(Ylogits)
 # log takes the log of each element, * multiplies the tensors element by element
 # reduce_mean will add all the components in the tensor
 # so here we end up with the total cross-entropy for all images in the batch
-cross_entropy = -tf.reduce_mean(Y_ * tf.log(Y)) * 100.0  # normalized for batches of 100 images,
+#cross_entropy = -tf.reduce_mean(Y_ * tf.log(Y)) * 100.0  # normalized for batches of 100 images,
 
 
 # we can also use tensorflow function for softmax
-#cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=Ylogits, labels=Y_)
-#cross_entropy = tf.reduce_mean(cross_entropy)*100
+cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=Ylogits, labels=Y_)
+cross_entropy = tf.reduce_mean(cross_entropy)*100
 
                                                           
 # accuracy of the trained model, between 0 (worst) and 1 (best)
@@ -115,9 +115,8 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 train_step = tf.train.GradientDescentOptimizer(0.005).minimize(cross_entropy)
 
 # matplotlib visualisation
-allweights = tf.reshape(W, [-1])
-allbiases = tf.reshape(b, [-1])
-
+allweights = tf.concat([tf.reshape(W1, [-1]), tf.reshape(W2, [-1]), tf.reshape(W3, [-1]), tf.reshape(W4, [-1]), tf.reshape(W5, [-1])], 0)
+allbiases  = tf.concat([tf.reshape(b1, [-1]), tf.reshape(b2, [-1]), tf.reshape(b3, [-1]), tf.reshape(b4, [-1]), tf.reshape(b5, [-1])], 0)
 
 
 
@@ -161,3 +160,14 @@ with tf.Session() as sess:
 
 title = "MNIST 5 layer"
 vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,DISPLAY_STEP)
+
+
+# sample output for 5k iterations
+#0 Trn acc=0.10999999940395355 , Trn loss=230.5011444091797 Tst acc=0.0957999974489212 , Tst loss=232.8909912109375
+#100 Trn acc=0.10000000149011612 , Trn loss=229.38812255859375 Tst acc=0.09799999743700027 , Tst loss=230.8378448486328
+#200 Trn acc=0.07000000029802322 , Trn loss=231.29209899902344 Tst acc=0.09799999743700027 , Tst loss=230.82485961914062
+#300 Trn acc=0.09000000357627869 , Trn loss=232.11734008789062 Tst acc=0.10090000182390213 , Tst loss=230.51341247558594
+# ...
+#4800 Trn acc=0.949999988079071 , Trn loss=11.355264663696289 Tst acc=0.948199987411499 , Tst loss=17.340219497680664
+#4900 Trn acc=0.9399999976158142 , Trn loss=22.300941467285156 Tst acc=0.9466999769210815 , Tst loss=17.51348876953125
+#5000 Trn acc=0.9200000166893005 , Trn loss=20.947153091430664 Tst acc=0.953499972820282 , Tst loss=15.77566909790039
