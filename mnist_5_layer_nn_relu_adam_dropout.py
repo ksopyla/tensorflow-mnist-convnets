@@ -51,7 +51,8 @@ mnist = read_data_sets("MNISTdata", one_hot=True, reshape=False, validation_size
 X = tf.placeholder(tf.float32, [None, 28, 28, 1])
 # correct answers will go here
 Y_ = tf.placeholder(tf.float32, [None, 10])
-
+# Probability of keeping a node during dropout = 1.0 at test time (no dropout) and 0.75 at training time
+pkeep = tf.placeholder(tf.float32)
 
 # layers sizes
 L1 = 200
@@ -79,15 +80,23 @@ b5 = tf.Variable(tf.zeros([L5]))
 
 
 
-# flatten the images, unrole eacha image row by row, create vector[784]
+# flatten the images, unrole eacha image row by row, create vector[784] 
 # -1 in the shape definition means compute automatically the size of this dimension
 XX = tf.reshape(X, [-1, 784])
 
 # Define model
-Y1 = tf.nn.sigmoid(tf.matmul(XX, W1) + b1)
-Y2 = tf.nn.sigmoid(tf.matmul(Y1, W2) + b2)
-Y3 = tf.nn.sigmoid(tf.matmul(Y2, W3) + b3)
-Y4 = tf.nn.sigmoid(tf.matmul(Y3, W4) + b4)
+Y1 = tf.nn.relu(tf.matmul(XX, W1) + b1)
+Y1 = tf.nn.dropout(Y1, pkeep)
+
+Y2 = tf.nn.relu(tf.matmul(Y1, W2) + b2)
+Y2 = tf.nn.dropout(Y2, pkeep)
+
+Y3 = tf.nn.relu(tf.matmul(Y2, W3) + b3)
+Y3 = tf.nn.dropout(Y3, pkeep)
+
+Y4 = tf.nn.relu(tf.matmul(Y3, W4) + b4)
+Y4 = tf.nn.dropout(Y4, pkeep)
+
 Ylogits = tf.matmul(Y4, W5) + b5
 Y = tf.nn.softmax(Ylogits)
 
@@ -111,14 +120,13 @@ cross_entropy = tf.reduce_mean(cross_entropy)*100
 correct_prediction = tf.equal(tf.argmax(Y, 1), tf.argmax(Y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-# training, learning rate = 0.005
-train_step = tf.train.GradientDescentOptimizer(0.005).minimize(cross_entropy)
+# training, 
+learning_rate = 0.003
+train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 
 # matplotlib visualisation
 allweights = tf.concat([tf.reshape(W1, [-1]), tf.reshape(W2, [-1]), tf.reshape(W3, [-1]), tf.reshape(W4, [-1]), tf.reshape(W5, [-1])], 0)
 allbiases  = tf.concat([tf.reshape(b1, [-1]), tf.reshape(b2, [-1]), tf.reshape(b3, [-1]), tf.reshape(b4, [-1]), tf.reshape(b5, [-1])], 0)
-
-
 
 
 # Initializing the variables
@@ -142,10 +150,10 @@ with tf.Session() as sess:
         
         if i%DISPLAY_STEP ==0:
             # compute training values for visualisation
-            acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y})
+            acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y, pkeep: 1.0})
             
             
-            acc_tst, loss_tst = sess.run([accuracy, cross_entropy], feed_dict={X: mnist.test.images, Y_: mnist.test.labels})
+            acc_tst, loss_tst = sess.run([accuracy, cross_entropy], feed_dict={X: mnist.test.images, Y_: mnist.test.labels, pkeep: 1.0})
             
             print("#{} Trn acc={} , Trn loss={} Tst acc={} , Tst loss={}".format(i,acc_trn,loss_trn,acc_tst,loss_tst))
 
@@ -155,24 +163,26 @@ with tf.Session() as sess:
             test_acc.append(acc_tst)
 
         # the backpropagationn training step
-        sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y})
+        sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y, pkeep: 0.75})
 
 
-title = "MNIST 5 layer"
+title = "MNIST 5 layer, relu, adam, dropout"
 vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,DISPLAY_STEP)
+
 
 
 # Restults
 # mnist_single_layer_nn.py acc= 0.9237 
 # mnist__layer_nn.py TST acc = 0.9534
+# mnist__layer_nn_relu_adam.py TST acc = 0.9771
+# mnist__layer_nn_relu_adam_dropout.py TST acc = 
 
-
-# sample output for 5k iterations 
-#0 Trn acc=0.10999999940395355 , Trn loss=230.5011444091797 Tst acc=0.0957999974489212 , Tst loss=232.8909912109375
-#100 Trn acc=0.10000000149011612 , Trn loss=229.38812255859375 Tst acc=0.09799999743700027 , Tst loss=230.8378448486328
-#200 Trn acc=0.07000000029802322 , Trn loss=231.29209899902344 Tst acc=0.09799999743700027 , Tst loss=230.82485961914062
-#300 Trn acc=0.09000000357627869 , Trn loss=232.11734008789062 Tst acc=0.10090000182390213 , Tst loss=230.51341247558594
+# sample output for 5k iterations
+#0 Trn acc=0.10000000149011612 , Trn loss=229.3443603515625 Tst acc=0.11999999731779099 , Tst loss=230.12518310546875
+#100 Trn acc=0.9300000071525574 , Trn loss=30.25579071044922 Tst acc=0.8877000212669373 , Tst loss=35.22196578979492
+#200 Trn acc=0.8799999952316284 , Trn loss=33.183040618896484 Tst acc=0.9417999982833862 , Tst loss=19.18865966796875
+#300 Trn acc=0.9399999976158142 , Trn loss=21.5306396484375 Tst acc=0.9406999945640564 , Tst loss=19.576183319091797
 # ...
-#4800 Trn acc=0.949999988079071 , Trn loss=11.355264663696289 Tst acc=0.948199987411499 , Tst loss=17.340219497680664
-#4900 Trn acc=0.9399999976158142 , Trn loss=22.300941467285156 Tst acc=0.9466999769210815 , Tst loss=17.51348876953125
-#5000 Trn acc=0.9200000166893005 , Trn loss=20.947153091430664 Tst acc=0.953499972820282 , Tst loss=15.77566909790039
+#4800 Trn acc=0.9700000286102295 , Trn loss=11.897256851196289 Tst acc=0.9749000072479248 , Tst loss=9.952529907226562
+#4900 Trn acc=0.9800000190734863 , Trn loss=4.757292747497559 Tst acc=0.974399983882904 , Tst loss=11.507346153259277
+#5000 Trn acc=0.9900000095367432 , Trn loss=4.661561012268066 Tst acc=0.9732999801635742 , Tst loss=11.199274063110352

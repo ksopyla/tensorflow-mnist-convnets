@@ -36,7 +36,7 @@ def losses_accuracies_plots(train_losses, train_acc, test_losses, test_acc,plot_
     # iters_steps
     iter_steps = [step *k for k in range(training_iters)]
 
-    imh = plt.figure(1, figsize=(15, 12), dpi=160)
+    imh = plt.figure(1, figsize=(15, 14), dpi=160)
     # imh.tight_layout()
     # imh.subplots_adjust(top=0.88)
 
@@ -57,7 +57,7 @@ def losses_accuracies_plots(train_losses, train_acc, test_losses, test_acc,plot_
     plt.title('Test Accuracy')
 
 
-    plt.tight_layout()
+    #plt.tight_layout()
     plt.subplots_adjust(top=0.88)
 
     plt.savefig("./plots/"+plot_title)
