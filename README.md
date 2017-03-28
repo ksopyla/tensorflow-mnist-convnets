@@ -6,22 +6,28 @@ Project presents four different neural nets for [MNIST](http://yann.lecun.com/ex
 Each network is build on top of previous example with gradually increasing difficulty in order to learn more powerful models.
 
 
+## Models implemented
 
-## Models implemented:
 * simple single layer neural network (one fully-connected layer) , 
-* 5 layer Fully-connected neural network (5 FC NN), 
+* 5 layer Fully-connected neural network (5 FC NN) in 3 variants
 * convolutional neural netowork: 3x convNet+1FC+output - activation function sigmoid
 * convolutional neural netowork with dropout, relu, and better weight initialization: 3x convNet+1FC+output 
 
 
-## Single layer neural networks
 
-File: minist_single_layer_nn.py
+
+
+## Single layer neural network
+
+This is the simplest architecture that we will consider. This neural network will be our baseline model for further more powerfull solutions.
+This is also a good candidate for understanding Tensorflow execution model.
+
+File: **minist\_1.0\_single\_layer\_nn.py**
 
 ### Network architecture
 
 * Input layer 28*28= 784, 
-* Output 10 dim vector (10 digits)
+* Output 10 dim vector (10 digits, one-hot encoding)
 
 ```
 input layer             - X[batch, 784]
@@ -38,9 +44,25 @@ Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
 
 Training consists of finding good W elements. This will be handled automaticaly by Tensorflow optimizer.
 
+## Five layers fully-connected neural network
 
+This is upgraded version of previous model, between input and output we added five fully connected hidden layers. Adding more layers makes network more expressive but in the same time harder to train. The three new problems could emerge: vanising gradients, model overfitting and computation time complexity. In our case where the dataset is rather small, we did not see those problems in real scale.
+
+In order to deal with those problems, different training techniques was invented. Changeing from sigmoid to relu activation function will prevent vanising gradients, chosing Adam optimizer will speed up  optimization and in the same time shorten training time, adding dropout will help with overfitting.
+
+This model was implemented in three variants:
+
+* five layer fully-connected 
+* five layer fully-connected with relu activation function and Adam optmizer
+* five layer fully-connected with relu activation, Adam optmizer and dropout
+ 
+ 
 ## Furhter reading
 
 * [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
-* [Tensorflow and deep learning without a PHD](https://codelabs.developers.google.com/codelabs/cloud-tensorflow-mnist/)
+* [Tensorflow and deep learning without a PHD](https://codelabs.developers.google.com/codelabs/cloud-tensorflow-mnist/) - very good tutorial showing how to build modern MNIST conv net. It was my inspiration for this tutorial :)
 * [What is the difference between a Fully-Connected and Convolutional Neural Network?](https://www.reddit.com/r/MachineLearning/comments/3yy7ko/what_is_the_difference_between_a_fullyconnected/)
+* [Tensorflow Examples by aymericdamien](aymericdamien/TensorFlow-Examples) - github repository with very useful and not so obious Tensorflow examples
+* [Awesome tensorflow](https://github.com/jtoy/awesome-tensorflow) - A curated list of dedicated resources
+
+* [Projects with #Tensorflow tag in plon.io](https://plon.io/explore/tag/tensoflow)

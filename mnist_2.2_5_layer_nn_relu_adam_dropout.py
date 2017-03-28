@@ -175,7 +175,7 @@ vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,D
 # mnist_single_layer_nn.py acc= 0.9237 
 # mnist__layer_nn.py TST acc = 0.9534
 # mnist__layer_nn_relu_adam.py TST acc = 0.9771
-# mnist__layer_nn_relu_adam_dropout.py TST acc = 
+# mnist__layer_nn_relu_adam_dropout.py TST acc = 0.9732
 
 # sample output for 5k iterations
 #0 Trn acc=0.10000000149011612 , Trn loss=229.3443603515625 Tst acc=0.11999999731779099 , Tst loss=230.12518310546875
