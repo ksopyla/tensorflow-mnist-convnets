@@ -55,9 +55,29 @@ This model was implemented in three variants:
 * five layer fully-connected 
 * five layer fully-connected with relu activation function and Adam optmizer
 * five layer fully-connected with relu activation, Adam optmizer and dropout
+
+## Network architecture
+
+```
+input layer             - X[batch, 784]
+1 layer                 - W1[784, 200] + b1[200]
+                          Y1[batch, 200] 
+2 layer                 - W2[200, 100] + b2[100]
+                          Y2[batch, 200] 
+3 layer                 - W3[100, 60]  + b3[60]
+                          Y3[batch, 200] 
+4 layer                 - W4[60, 30]   + b4[30]
+                          Y4[batch, 30] 
+5 layer                 - W5[30, 10]   + b5[10]
+One-hot encoded labels    Y5[batch, 10]
+
+model
+Y = softmax(X*W+b)
+Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
+```
  
- 
-## Furhter reading
+
+## Refernces and furhter reading
 
 * [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
 * [Tensorflow and deep learning without a PHD](https://codelabs.developers.google.com/codelabs/cloud-tensorflow-mnist/) - very good tutorial showing how to build modern MNIST conv net. It was my inspiration for this tutorial :)
