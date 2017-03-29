@@ -117,9 +117,9 @@ with tf.Session() as sess:
         # the backpropagationn training step
         sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y})
 
+    
 
-
-title = "MNIST 1 layer"
+title = "MNIST 1.0 single softmax layer"
 vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,DISPLAY_STEP)
 
 

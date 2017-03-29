@@ -158,7 +158,7 @@ with tf.Session() as sess:
         sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y})
 
 
-title = "MNIST 5 layer"
+title = "MNIST 2.0 5 layers sigmoid"
 vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,DISPLAY_STEP)
 
 

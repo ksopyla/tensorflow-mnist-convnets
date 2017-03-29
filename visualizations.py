@@ -40,7 +40,9 @@ def losses_accuracies_plots(train_losses, train_acc, test_losses, test_acc,plot_
     # imh.tight_layout()
     # imh.subplots_adjust(top=0.88)
 
-    imh.suptitle(plot_title)
+    final_acc = test_acc[-1]
+    img_title = "{}, test acc={:.4f}".format(plot_title,final_acc)
+    imh.suptitle(img_title)
     plt.subplot(221)
     #plt.plot(iter_steps,losses, '-g', label='Loss')
     plt.semilogy(iter_steps, train_losses, '-g', label='Trn Loss')
@@ -60,5 +62,6 @@ def losses_accuracies_plots(train_losses, train_acc, test_losses, test_acc,plot_
     #plt.tight_layout()
     plt.subplots_adjust(top=0.88)
 
-    plt.savefig("./plots/"+plot_title)
+    plot_file = "./plots/{}.png".format(plot_title.replace(" ","_"))
+    plt.savefig(plot_file)
     plt.show()
