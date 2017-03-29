@@ -99,7 +99,7 @@ with tf.Session() as sess:
     for i in range(NUM_ITERS+1):
         # training on batches of 100 images with 100 labels
         batch_X, batch_Y = mnist.train.next_batch(BATCH)
-        
+
         if i%DISPLAY_STEP ==0:
             # compute training values for visualisation
             acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y})
