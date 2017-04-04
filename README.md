@@ -25,11 +25,12 @@ We start with simple model in order to lay Tensorflow foundations:
 * Initalize TF session
 * Run computations in a loop.
 
-
-
 File: **minist\_1.0\_single\_layer\_nn.py**
 
+
 ### Network architecture
+
+This is simple one layer feedforward network with one input layer and one output layer
 
 * Input layer 28*28= 784, 
 * Output 10 dim vector (10 digits, one-hot encoding)
@@ -48,6 +49,13 @@ Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
 ```
 
 Training consists of finding good W elements. This will be handled automaticaly by Tensorflow optimizer.
+
+
+### Results
+
+![Tensorflow MNIST train/test loss and accuracy for one-layer neural network](https://plon.io/files/58e3bfaf1b12ce00012bd731)
+
+
 
 ## Five layers fully-connected neural network
 
@@ -105,10 +113,14 @@ input layer               - X[batch, 784]
 One-hot encoded labels      Y5[batch, 10]
 ```
 
+
+
 ## Download or run the project
+
 
 * **[Clone project from github](https://github.com/ksopyla/tensorflow-mnist-convnets)**
 * **[Run project online in Plon](https://plon.io/explore/tensorflow-mnist-convolutio/dNiShdMM47C6oe1D2)**
+
 
 
 
@@ -121,7 +133,6 @@ One-hot encoded labels      Y5[batch, 10]
 * [Awesome tensorflow](https://github.com/jtoy/awesome-tensorflow) - A curated list of dedicated resources
 * [Projects with #Tensorflow tag in plon.io](https://plon.io/explore/tag/tensoflow)
 
-## Recommended tensorflow tutorials
 
 ### Textminingonline blog
 * [Dive Into TensorFlow, Part I: Getting Started with TensorFlow ](http://textminingonline.com/dive-into-tensorflow-part-i-getting-started-with-tensorflow)
