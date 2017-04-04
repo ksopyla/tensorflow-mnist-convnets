@@ -106,7 +106,7 @@ All results are for 5k iteration.
 
 * five layer fully-connected : **accuracy=0.9541**
 * five layer fully-connected with relu activation function and Adam optmizer: **accuracy=0.9817**
-* five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761 **
+* five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761**
 
 
 ![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network](https://plon.io/files/58e409241b12ce00012bd733)
