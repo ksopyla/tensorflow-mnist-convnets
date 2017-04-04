@@ -1,14 +1,19 @@
 # Tensorflow MNIST Convolutional Network Tutorial
 
-This project is another tutorial for teaching you Artificial Neural Networks. I hope that my way of presenting the material will help you in long learning process. All the examples are presented in [TensorFlow](https://www.tensorflow.org/) and as a runtime environment I choose the [online python IDE - PLON.io](https://plon.io). PLON makes much easier to share this tutorial with you and run the computations online without any configuraion.
+This project is another tutorial for teaching you Artificial Neural Networks. 
+I hope that my way of presenting the material will help you in long learning process. 
+All the examples are presented in [TensorFlow](https://www.tensorflow.org/) and as a runtime environment 
+I choose the [online python IDE - PLON.io](https://plon.io). PLON makes much easier to share this tutorial 
+with you and run the computations online without any configuraion.
 
-Project presents four different neural nets for [MNIST](http://yann.lecun.com/exdb/mnist/) digit classification. The former two are [fully connected neural networks](https://en.wikipedia.org/wiki/Artificial_neural_network) and latter are [convolutional networks](https://en.wikipedia.org/wiki/Convolutional_neural_network). 
+Project presents four different neural nets for [MNIST](http://yann.lecun.com/exdb/mnist/) digit classification. 
+The former two are [fully connected neural networks](https://en.wikipedia.org/wiki/Artificial_neural_network) and latter are [convolutional networks](https://en.wikipedia.org/wiki/Convolutional_neural_network). 
 Each network is build on top of previous example with gradually increasing difficulty in order to learn more powerful models.
 
 
-## Models implemented
+## Tensorflow neural network examples
 
-* simple single layer neural network (one fully-connected layer) , 
+* simple single layer neural network (one fully-connected layer), 
 * 5 layer Fully-connected neural network (5 FC NN) in 3 variants
 * convolutional neural netowork: 3x convNet+1FC+output - activation function sigmoid
 * convolutional neural netowork with dropout, relu, and better weight initialization: 3x convNet+1FC+output 
@@ -41,17 +46,19 @@ Fully connected         - W[784,10] + b[10]
 One-hot encoded labels  - Y[batch, 10]
 ```
 
-### Model
+#### Model 
 
 ```
 Y = softmax(X*W+b)
 Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
 ```
 
-Training consists of finding good W elements. This will be handled automaticaly by Tensorflow optimizer.
+Training consists in finding good W elements,  this is handled automaticaly by Tensorflow Gradient Descent optimizer.
 
 
 ### Results
+
+This simple model achieves **0.9237** accuracy
 
 ![Tensorflow MNIST train/test loss and accuracy for one-layer neural network](https://plon.io/files/58e3bfaf1b12ce00012bd731)
 
@@ -63,13 +70,17 @@ This is upgraded version of previous model, between input and output we added fi
 
 In order to deal with those problems, different training techniques was invented. Changeing from sigmoid to relu activation function will prevent vanising gradients, chosing Adam optimizer will speed up  optimization and in the same time shorten training time, adding dropout will help with overfitting.
 
-This model was implemented in three variants:
+This model was implemented in three variants, where each successive variant builds on previous one and add some new fatures:
 
-* five layer fully-connected 
-* five layer fully-connected with relu activation function and Adam optmizer
-* five layer fully-connected with relu activation, Adam optmizer and dropout
+* Variant 1 is simple fully connected network with sigmoid activation fucntion and Gradient descent optimizer
+* Variant 2 use more powerful RELU acitivation function instead sigmoid and utilize better Adam optimizer
+* Variant 2 add [dropout](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf) usage in order to prevent overfitting
+
+
 
 ### Network architecture
+
+All variants share the same network architecture, all have five layers with sizes given below:
 
 ```
 input layer             - X[batch, 784]
@@ -88,6 +99,27 @@ model
 Y = softmax(X*W+b)
 Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
 ```
+
+### Results
+
+All results are for 5k iteration.
+
+* five layer fully-connected : **accuracy=0.9541**
+* five layer fully-connected with relu activation function and Adam optmizer: **accuracy=0.9817**
+* five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761 **
+
+
+![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network](https://plon.io/files/58e409241b12ce00012bd733)
+
+![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network (RELU, Adam optimizer)](https://plon.io/files/58e40dba1b12ce00012bd735)
+
+![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network (RELU, Adam optimizer, dropout)](https://plon.io/files/58e40ec91b12ce00012bd737)
+
+As we can see changing from sigmoid to RELU activation and use Adam optimizer increse accuracy over 2.5%, wich is 
+significant for such small change. Howerver, adding dropout decrease , but if we compare test loss graphs
+we can notice that dropout decrease the final test accuracy, but the test accuracy graph is much smoother.
+
+
 
 ## Convolutional neural network
 
