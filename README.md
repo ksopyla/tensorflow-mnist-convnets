@@ -11,6 +11,10 @@ The former two are [fully connected neural networks](https://en.wikipedia.org/wi
 Each network is build on top of previous example with gradually increasing difficulty in order to learn more powerful models.
 
 
+Project was implemented in ***Python 2*** and Tensorflow v.1.0.0 but it is rather streightforward to run 
+it in ***Python 3***
+
+
 ## Tensorflow neural network examples
 
 * simple single layer neural network (one fully-connected layer), 
@@ -125,7 +129,7 @@ we can notice that dropout decrease the final test accuracy, but the test accura
 
 ### Network architecture
 
-
+The network layout is as follows:
 ```
 5 layer neural network with 3 convolution layers, input layer 28*28= 784, output 10 (10 digits)
 Output labels uses one-hot encoding
@@ -145,7 +149,28 @@ input layer               - X[batch, 784]
 One-hot encoded labels      Y5[batch, 10]
 ```
 
+As a optimizer I choose AdamOptimizer and all weights was randomly intialized from gausian distribution
+with std=0.1. Activation function is relu, without dropout.
 
+
+### Results
+
+All results are for 5k iteration.
+
+* five layer convolutional neural network with max pooling : **accuracy=0.9890**
+
+
+![Tensorflow MNIST train/test loss and accuracy for convolutional 5 layer network](https://plon.io/files/595b0753c0265100013c2c07)
+
+
+
+## Summarry
+
+* Single layer neural network **accuracy=0.9237** 
+* five layer fully-connected : **accuracy=0.9541**
+* five layer fully-connected with relu activation function and Adam optmizer: **accuracy=0.9817**
+* five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761**
+* five layer convolutional neural network with max pooling : **accuracy=0.9890**
 
 ## Download or run the project
 
