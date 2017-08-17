@@ -190,17 +190,3 @@ All results are for 5k iteration.
 * [Awesome tensorflow](https://github.com/jtoy/awesome-tensorflow) - A curated list of dedicated resources
 * [Projects with #Tensorflow tag in plon.io](https://plon.io/explore/tag/tensoflow)
 
-
-### Textminingonline blog
-* [Dive Into TensorFlow, Part I: Getting Started with TensorFlow ](http://textminingonline.com/dive-into-tensorflow-part-i-getting-started-with-tensorflow)
-* [Dive Into TensorFlow, Part II: Basic Concepts](http://textminingonline.com/dive-into-tensorflow-part-ii-basic-concepts)
-* [Dive Into TensorFlow, Part III: GTX 1080+Ubuntu16.04+CUDA8.0+cuDNN5.0+TensorFlow](http://textminingonline.com/dive-into-tensorflow-part-iii-gtx-1080-ubuntu16-04-cuda8-0-cudnn5-0-tensorflow)
-* [Dive Into TensorFlow, Part IV: Hello MNIST](http://textminingonline.com/dive-into-tensorflow-part-iv-hello-mnist)
-
-
-
-### MetaFlow blog tutorial
-* [TensorFlow: A primer](https://blog.metaflow.fr/tensorflow-a-primer-4b3fa0978be3)
-* [TensorFlow: Shapes and dynamic dimensions](https://blog.metaflow.fr/shapes-and-dynamic-dimensions-in-tensorflow-7b1fe79be363)
-* [TensorFlow: saving/restoring and mixing multiple models](https://blog.metaflow.fr/tensorflow-saving-restoring-and-mixing-multiple-models-c4c94d5d7125)
-* [TensorFlow: How to freeze a model and serve it with a python API](https://blog.metaflow.fr/tensorflow-how-to-freeze-a-model-and-serve-it-with-a-python-api-d4f3596b3adc)
