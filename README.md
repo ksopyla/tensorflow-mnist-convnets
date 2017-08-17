@@ -172,12 +172,6 @@ All results are for 5k iteration.
 * five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761**
 * five layer convolutional neural network with max pooling : **accuracy=0.9890**
 
-## Download or run the project
-
-
-* **[Clone project from github](https://github.com/ksopyla/tensorflow-mnist-convnets)**
-* **[Run project online in Plon](https://plon.io/explore/tensorflow-mnist-convolutio/dNiShdMM47C6oe1D2)**
-
 
 
 
@@ -188,5 +182,4 @@ All results are for 5k iteration.
 * [What is the difference between a Fully-Connected and Convolutional Neural Network?](https://www.reddit.com/r/MachineLearning/comments/3yy7ko/what_is_the_difference_between_a_fullyconnected/)
 * [Tensorflow Examples by aymericdamien](aymericdamien/TensorFlow-Examples) - github repository with very useful and not so obious Tensorflow examples
 * [Awesome tensorflow](https://github.com/jtoy/awesome-tensorflow) - A curated list of dedicated resources
-* [Projects with #Tensorflow tag in plon.io](https://plon.io/explore/tag/tensoflow)
 
