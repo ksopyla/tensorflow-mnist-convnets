@@ -5,13 +5,12 @@
 # Licensed under the MIT
 
 # Network architecture:
-# 5 layer neural network with 3 convolution layers, input layer 28*28= 784, output 10 (10 digits)
+# 5 layer neural network with 3 convolution layers, input layer 28x28x1, output 10 (10 digits)
 # Output labels uses one-hot encoding
 
-# input layer               - X[batch, 784]
+# input layer               - X[batch, 28, 28]
 # 1 conv. layer             - W1[5,5,,1,C1] + b1[C1]
 #                             Y1[batch, 28, 28, C1]
-#  
 # 2 conv. layer             - W2[3, 3, C1, C2] + b2[C2]
 # 2.1 max pooling filter 2x2, stride 2 - down sample the input (rescale input by 2) 28x28-> 14x14
 #                             Y2[batch, 14,14,C2] 
@@ -157,7 +156,6 @@ with tf.Session() as sess:
             # compute training values for visualisation
             acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y, pkeep: 1.0})
             
-            
             acc_tst, loss_tst = sess.run([accuracy, cross_entropy], feed_dict={X: mnist.test.images, Y_: mnist.test.labels, pkeep: 1.0})
             
             print("#{} Trn acc={} , Trn loss={} Tst acc={} , Tst loss={}".format(i,acc_trn,loss_trn,acc_tst,loss_tst))
@@ -176,18 +174,12 @@ vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,D
 
 
 
-# Restults
-# mnist_single_layer_nn.py acc= 0.9237 
-# mnist__layer_nn.py TST acc = 0.9534
-# mnist__layer_nn_relu_adam.py TST acc = 0.9771
-# mnist__layer_nn_relu_adam_dropout.py TST acc = 0.9732
+# Restults Test accuracy:
+# mnist_1.0_single_layer_nn acc= 0.9237 
+# mnist_2.0_5_layer_nn.py  acc = 0.9534
+# mnist_2.1_5_layer_nn_relu_adam.py acc = 0.9771
+# mnist_2.1_5_layer_nn_relu_adam_dropout.py acc = 0.9732
+# mnist_3.0_3layer_convnet.py acc= 0.9880
 
 # sample output for 5k iterations
-#0 Trn acc=0.10000000149011612 , Trn loss=229.3443603515625 Tst acc=0.11999999731779099 , Tst loss=230.12518310546875
-#100 Trn acc=0.9300000071525574 , Trn loss=30.25579071044922 Tst acc=0.8877000212669373 , Tst loss=35.22196578979492
-#200 Trn acc=0.8799999952316284 , Trn loss=33.183040618896484 Tst acc=0.9417999982833862 , Tst loss=19.18865966796875
-#300 Trn acc=0.9399999976158142 , Trn loss=21.5306396484375 Tst acc=0.9406999945640564 , Tst loss=19.576183319091797
-# ...
-#4800 Trn acc=0.9700000286102295 , Trn loss=11.897256851196289 Tst acc=0.9749000072479248 , Tst loss=9.952529907226562
-#4900 Trn acc=0.9800000190734863 , Trn loss=4.757292747497559 Tst acc=0.974399983882904 , Tst loss=11.507346153259277
-#5000 Trn acc=0.9900000095367432 , Trn loss=4.661561012268066 Tst acc=0.9732999801635742 , Tst loss=11.199274063110352
+

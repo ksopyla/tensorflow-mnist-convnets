@@ -78,9 +78,6 @@ allweights = tf.reshape(W, [-1])
 allbiases = tf.reshape(b, [-1])
 
 
-
-
-
 # Initializing the variables
 init = tf.global_variables_initializer()
 
@@ -103,8 +100,7 @@ with tf.Session() as sess:
         if i%DISPLAY_STEP ==0:
             # compute training values for visualisation
             acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y})
-            
-            
+                        
             acc_tst, loss_tst = sess.run([accuracy, cross_entropy], feed_dict={X: mnist.test.images, Y_: mnist.test.labels})
             
             print("#{} Trn acc={} , Trn loss={} Tst acc={} , Tst loss={}".format(i,acc_trn,loss_trn,acc_tst,loss_tst))
