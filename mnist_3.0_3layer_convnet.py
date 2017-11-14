@@ -82,8 +82,6 @@ b4 = tf.Variable(tf.truncated_normal([FC4], stddev=0.1))
 W5 = tf.Variable(tf.truncated_normal([FC4, 10], stddev=0.1))
 b5 = tf.Variable(tf.truncated_normal([10], stddev=0.1))
 
-
-
 # flatten the images, unrole eacha image row by row, create vector[784] 
 # -1 in the shape definition means compute automatically the size of this dimension
 XX = tf.reshape(X, [-1, 784])
@@ -169,7 +167,7 @@ with tf.Session() as sess:
         sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y, pkeep: 0.75})
 
 
-title = "MNIST_3.0 5 layers 3 conv."
+title = "MNIST_3.0 5 layers 3 conv"
 vis.losses_accuracies_plots(train_losses,train_acc,test_losses, test_acc,title,DISPLAY_STEP)
 
 
