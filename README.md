@@ -1,17 +1,16 @@
 # Tensorflow MNIST Convolutional Network Tutorial
 
 This project is another tutorial for teaching you Artificial Neural Networks. 
-I hope that my way of presenting the material will help you in long learning process. 
+I hope that my way of presenting the material will help you in the long learning process. 
 All the examples are presented in [TensorFlow](https://www.tensorflow.org/) and as a runtime environment 
-I choose the [online python IDE - PLON.io](https://plon.io). PLON makes much easier to share this tutorial 
-with you and run the computations online without any configuraion.
+I choose the [online python IDE - PLON.io](https://plon.io). PLON makes much easier to share this tutorial with you and run the computations online without any configuration.
 
 Project presents four different neural nets for [MNIST](http://yann.lecun.com/exdb/mnist/) digit classification. 
 The former two are [fully connected neural networks](https://en.wikipedia.org/wiki/Artificial_neural_network) and latter are [convolutional networks](https://en.wikipedia.org/wiki/Convolutional_neural_network). 
-Each network is build on top of previous example with gradually increasing difficulty in order to learn more powerful models.
+Each network is built on top of the previous example with gradually increasing difficulty in order to learn more powerful models.
 
 
-Project was implemented in ***Python 2*** and Tensorflow v.1.0.0 but it is rather streightforward to run 
+Project was implemented in ***Python 2*** and Tensorflow v.1.0.0 but it is rather straightforward to run 
 it in ***Python 3***
 
 
@@ -25,7 +24,7 @@ it in ***Python 3***
 
 ## Single layer neural network
 
-This is the simplest architecture that we will consider. This feedforward neural network will be our baseline model for further more powerfull solutions.
+This is the simplest architecture that we will consider. This feedforward neural network will be our baseline model for further more powerful solutions.
 We start with simple model in order to lay Tensorflow foundations: 
 
 * How to [work with placeholders](https://www.tensorflow.org/versions/r0.11/api_docs/python/io_ops/placeholders)?
@@ -57,7 +56,7 @@ Y = softmax(X*W+b)
 Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
 ```
 
-Training consists in finding good W elements,  this is handled automaticaly by Tensorflow Gradient Descent optimizer.
+Training consists of finding good W elements,  this is handled automatically by Tensorflow Gradient Descent optimizer.
 
 
 ### Results
@@ -70,14 +69,14 @@ This simple model achieves **0.9237** accuracy
 
 ## Five layers fully-connected neural network
 
-This is upgraded version of previous model, between input and output we added five fully connected hidden layers. Adding more layers makes network more expressive but in the same time harder to train. The three new problems could emerge: vanising gradients, model overfitting and computation time complexity. In our case where the dataset is rather small, we did not see those problems in real scale.
+This is upgraded version of the previous model, between input and output we added five fully connected hidden layers. Adding more layers makes the network more expressive but in the same time harder to train. The three new problems could emerge vanishing gradients, model overfitting, and computation time complexity. In our case where the dataset is rather small, we did not see those problems in real scale.
 
-In order to deal with those problems, different training techniques was invented. Changeing from sigmoid to relu activation function will prevent vanising gradients, chosing Adam optimizer will speed up  optimization and in the same time shorten training time, adding dropout will help with overfitting.
+In order to deal with those problems, different training techniques were invented. Changing from sigmoid to RELU activation function will prevent vanishing gradients, choosing Adam optimizer will speed up optimization and in the same time shorten training time, adding dropout will help with overfitting.
 
-This model was implemented in three variants, where each successive variant builds on previous one and add some new fatures:
+This model was implemented in three variants, where each successive variant builds on previous one and add some new features:
 
-* Variant 1 is simple fully connected network with sigmoid activation fucntion and Gradient descent optimizer
-* Variant 2 use more powerful RELU acitivation function instead sigmoid and utilize better Adam optimizer
+* Variant 1 is simple fully connected network with sigmoid activation function and Gradient descent optimizer
+* Variant 2 use more powerful RELU activation function instead sigmoid and utilize better Adam optimizer
 * Variant 2 add [dropout](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf) usage in order to prevent overfitting
 
 
@@ -113,14 +112,13 @@ All results are for 5k iteration.
 * five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761**
 
 
-![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network](https://plon.io/files/58e409241b12ce00012bd733)
+![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network](https://plon.io/files/58e409241b12ce00012bd733)
 
-![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network (RELU, Adam optimizer)](https://plon.io/files/58e40dba1b12ce00012bd735)
+![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network (RELU, Adam optimizer)](https://plon.io/files/58e40dba1b12ce00012bd735)
 
-![Tensorflow MNIST train/test loss and accuracy for 5 layer fully connected network (RELU, Adam optimizer, dropout)](https://plon.io/files/58e40ec91b12ce00012bd737)
+![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network (RELU, Adam optimizer, dropout)](https://plon.io/files/58e40ec91b12ce00012bd737)
 
-As we can see changing from sigmoid to RELU activation and use Adam optimizer increse accuracy over 2.5%, wich is 
-significant for such small change. Howerver, adding dropout decrease , but if we compare test loss graphs
+As we can see changing from sigmoid to RELU activation and use Adam optimizer increase accuracy over 2.5%, which is significant for such small change. However, adding dropout decrease, but if we compare test loss graphs
 we can notice that dropout decrease the final test accuracy, but the test accuracy graph is much smoother.
 
 
@@ -149,22 +147,22 @@ input layer               - X[batch, 784]
 One-hot encoded labels      Y5[batch, 10]
 ```
 
-As a optimizer I choose AdamOptimizer and all weights was randomly intialized from gausian distribution
-with std=0.1. Activation function is relu, without dropout.
+As an optimizer I choose AdamOptimizer and all weights were randomly initialized from the Gaussian distribution
+with std=0.1. The activation function is RELU, without dropout.
 
 
 ### Results
 
 All results are for 5k iteration.
 
-* five layer convolutional neural network with max pooling : **accuracy=0.9890**
+* five-layers convolutional neural network with max pooling: **accuracy=0.9890**
 
 
 ![Tensorflow MNIST train/test loss and accuracy for convolutional 5 layer network](https://plon.io/files/595b0753c0265100013c2c07)
 
 
 
-## Summarry
+## Summary
 
 * Single layer neural network **accuracy=0.9237** 
 * five layer fully-connected : **accuracy=0.9541**
@@ -175,11 +173,11 @@ All results are for 5k iteration.
 
 
 
-## Refernces and furhter reading
+## References and further reading
 
 * [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
-* [Tensorflow and deep learning without a PHD](https://codelabs.developers.google.com/codelabs/cloud-tensorflow-mnist/) - very good tutorial showing how to build modern MNIST conv net. It was my inspiration for this tutorial :)
+* [Tensorflow and deep learning without a Ph.D.](https://codelabs.developers.google.com/codelabs/cloud-tensorflow-mnist/) - very good tutorial showing how to build modern MNIST conv net. It was my inspiration for this tutorial :)
 * [What is the difference between a Fully-Connected and Convolutional Neural Network?](https://www.reddit.com/r/MachineLearning/comments/3yy7ko/what_is_the_difference_between_a_fullyconnected/)
-* [Tensorflow Examples by aymericdamien](aymericdamien/TensorFlow-Examples) - github repository with very useful and not so obious Tensorflow examples
+* [Tensorflow Examples by aymericdamien](aymericdamien/TensorFlow-Examples) - GitHub repository with very useful and not so obvious Tensorflow examples
 * [Awesome tensorflow](https://github.com/jtoy/awesome-tensorflow) - A curated list of dedicated resources
 
