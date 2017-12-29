@@ -151,7 +151,7 @@ with tf.Session() as sess:
 
             train_losses.append(loss_trn)
             train_acc.append(acc_trn)
-            test_losses.append(loss_trn)
+            test_losses.append(loss_tst)
             test_acc.append(acc_tst)
 
         # the backpropagationn training step
