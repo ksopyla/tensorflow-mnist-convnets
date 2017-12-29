@@ -16,7 +16,7 @@
 # Y = softmax(X*W+b)
 # Matrix mul: X*W - [batch,784]x[784,10] -> [batch,10]
 
-# Training consists of finding good W elements. This will be handled automaticaly by 
+# Training consists of finding good W elements. This will be handled automatically by 
 # Tensorflow optimizer
 
 
@@ -48,7 +48,7 @@ W = tf.Variable(tf.truncated_normal([784, 10],stddev=0.1))
 # biases b[10]
 b = tf.Variable(tf.zeros([10]))
 
-# flatten the images, unrole eacha image row by row, create vector[784] 
+# flatten the images, unroll each image row by row, create vector[784] 
 # -1 in the shape definition means compute automatically the size of this dimension
 XX = tf.reshape(X, [-1, 784])
 
@@ -73,7 +73,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 # training, learning rate = 0.005
 train_step = tf.train.GradientDescentOptimizer(0.005).minimize(cross_entropy)
 
-# matplotlib visualisation
+# matplotlib visualization
 allweights = tf.reshape(W, [-1])
 allbiases = tf.reshape(b, [-1])
 
@@ -98,7 +98,7 @@ with tf.Session() as sess:
         batch_X, batch_Y = mnist.train.next_batch(BATCH)
 
         if i%DISPLAY_STEP ==0:
-            # compute training values for visualisation
+            # compute training values for visualization
             acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y})
                         
             acc_tst, loss_tst = sess.run([accuracy, cross_entropy], feed_dict={X: mnist.test.images, Y_: mnist.test.labels})
@@ -110,7 +110,7 @@ with tf.Session() as sess:
             test_losses.append(loss_tst)
             test_acc.append(acc_tst)
 
-        # the backpropagationn training step
+        # the back-propagation training step
         sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y})
 
     

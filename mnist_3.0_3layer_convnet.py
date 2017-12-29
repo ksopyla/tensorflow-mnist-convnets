@@ -22,7 +22,7 @@
 # 5 output layer            - W5[FC4, 10]   + b5[10]
 # One-hot encoded labels      Y5[batch, 10]
 
-# Training consists of finding good W_i elements. This will be handled automaticaly by 
+# Training consists of finding good W_i elements. This will be handled automatically by 
 # Tensorflow optimizer
 
 
@@ -82,7 +82,7 @@ b4 = tf.Variable(tf.truncated_normal([FC4], stddev=0.1))
 W5 = tf.Variable(tf.truncated_normal([FC4, 10], stddev=0.1))
 b5 = tf.Variable(tf.truncated_normal([10], stddev=0.1))
 
-# flatten the images, unrole eacha image row by row, create vector[784] 
+# flatten the images, unroll each image row by row, create vector[784] 
 # -1 in the shape definition means compute automatically the size of this dimension
 XX = tf.reshape(X, [-1, 784])
 
@@ -126,7 +126,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 learning_rate = 0.003
 train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 
-# matplotlib visualisation
+# matplotlib visualization
 allweights = tf.concat([tf.reshape(W1, [-1]), tf.reshape(W2, [-1]), tf.reshape(W3, [-1]), tf.reshape(W4, [-1]), tf.reshape(W5, [-1])], 0)
 allbiases  = tf.concat([tf.reshape(b1, [-1]), tf.reshape(b2, [-1]), tf.reshape(b3, [-1]), tf.reshape(b4, [-1]), tf.reshape(b5, [-1])], 0)
 
@@ -151,7 +151,7 @@ with tf.Session() as sess:
         batch_X, batch_Y = mnist.train.next_batch(BATCH)
         
         if i%DISPLAY_STEP ==0:
-            # compute training values for visualisation
+            # compute training values for visualization
             acc_trn, loss_trn, w, b = sess.run([accuracy, cross_entropy, allweights, allbiases], feed_dict={X: batch_X, Y_: batch_Y, pkeep: 1.0})
             
             acc_tst, loss_tst = sess.run([accuracy, cross_entropy], feed_dict={X: mnist.test.images, Y_: mnist.test.labels, pkeep: 1.0})
@@ -163,7 +163,7 @@ with tf.Session() as sess:
             test_losses.append(loss_tst)
             test_acc.append(acc_tst)
 
-        # the backpropagationn training step
+        # the back-propagation training step
         sess.run(train_step, feed_dict={X: batch_X, Y_: batch_Y, pkeep: 0.75})
 
 
