@@ -3,15 +3,14 @@
 This project is another tutorial for teaching you Artificial Neural Networks. 
 I hope that my way of presenting the material will help you in the long learning process. 
 All the examples are presented in [TensorFlow](https://www.tensorflow.org/) and as a runtime environment 
-I choose the [online python IDE - PLON.io](https://plon.io). PLON makes much easier to share this tutorial with you and run the computations online without any configuration.
+
 
 Project presents four different neural nets for [MNIST](http://yann.lecun.com/exdb/mnist/) digit classification. 
 The former two are [fully connected neural networks](https://en.wikipedia.org/wiki/Artificial_neural_network) and latter are [convolutional networks](https://en.wikipedia.org/wiki/Convolutional_neural_network). 
 Each network is built on top of the previous example with gradually increasing difficulty in order to learn more powerful models.
 
 
-Project was implemented in ***Python 2*** and Tensorflow v.1.0.0 but it is rather straightforward to run 
-it in ***Python 3***
+Project was implemented in ***Python 3*** and Tensorflow v.1.0.0
 
 
 ## Tensorflow neural network examples
@@ -63,7 +62,7 @@ Training consists of finding good W elements,  this is handled automatically by 
 
 This simple model achieves **0.9237** accuracy
 
-![Tensorflow MNIST train/test loss and accuracy for one-layer neural network](https://plon.io/files/58e3bfaf1b12ce00012bd731)
+![Tensorflow MNIST train/test loss and accuracy for one-layer neural network](plots/MNIST_1.0_single_softmax_layer.png)
 
 
 
@@ -112,11 +111,11 @@ All results are for 5k iteration.
 * five layer fully-connected with relu activation, Adam optmizer and dropout: **accuracy=0.9761**
 
 
-![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network](https://plon.io/files/58e409241b12ce00012bd733)
+![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network](plots/MNIST_2.0_5_layers_sigmoid.png/)
 
-![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network (RELU, Adam optimizer)](https://plon.io/files/58e40dba1b12ce00012bd735)
+![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network (RELU, Adam optimizer)](plots/MNIST_2.1_5_layers_relu_adam.png)
 
-![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network (RELU, Adam optimizer, dropout)](https://plon.io/files/58e40ec91b12ce00012bd737)
+![Tensorflow MNIST train/test loss and accuracy for 5 layers fully connected network (RELU, Adam optimizer, dropout)](plots/MNIST_2.2_5_layers_relu_adam__dropout.png)
 
 As we can see changing from sigmoid to RELU activation and use Adam optimizer increase accuracy over 2.5%, which is significant for such small change. However, adding dropout decrease, but if we compare test loss graphs
 we can notice that dropout decrease the final test accuracy, but the test accuracy graph is much smoother.
@@ -158,7 +157,7 @@ All results are for 5k iteration.
 * five-layers convolutional neural network with max pooling: **accuracy=0.9890**
 
 
-![Tensorflow MNIST train/test loss and accuracy for convolutional 5 layer network](https://plon.io/files/595b0753c0265100013c2c07)
+![Tensorflow MNIST train/test loss and accuracy for convolutional 5 layer network](plots/MNIST_3.0_5_layers_3_conv.png)
 
 
 
